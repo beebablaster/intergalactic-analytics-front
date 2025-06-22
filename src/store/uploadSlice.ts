@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { aggregate } from '../api/api';
 
-type Phase = 'idle' | 'uploading' | 'success' | 'error';
+type Phase = 'idle' | 'fileSelected' | 'uploading' | 'success' | 'error';
 
 export interface ReportData {
   total_spend_galactic?: number;
@@ -34,7 +34,7 @@ export const useUpload = create<UploadState>((set) => ({
   report: undefined,
 
   selectFile: (file: File) => {
-    set({ selectedFile: file });
+    set({ selectedFile: file, fileName: file.name, phase: 'fileSelected' });
   },
 
   uploadFile: async (rows: number, file: File) => {

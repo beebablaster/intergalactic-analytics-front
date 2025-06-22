@@ -16,17 +16,19 @@ export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
   const openDialog = () => inputRef.current?.click();
   const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file && phase === 'idle' && onFileSelect) {
+    if (file && (phase === 'idle' || phase === 'fileSelected') && onFileSelect) {
       onFileSelect(file);
     }
   };
 
   const statusText =
-    phase === 'uploading'
-      ? 'идёт парсинг файла'
-      : phase === 'success'
-        ? 'готово!'
-        : 'упс, не то...';
+    phase === 'fileSelected'
+      ? 'файл загружен!'
+      : phase === 'uploading'
+        ? 'идёт парсинг файла'
+        : phase === 'success'
+          ? 'готово!'
+          : 'упс, не то...';
 
   if (phase === 'idle') {
     return (
@@ -51,6 +53,7 @@ export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
         <div
           className={clsx(
             s.statusWrapper,
+            phase === 'fileSelected' && s.uploading,
             phase === 'uploading' && s.uploading,
             phase === 'success' && s.success,
             phase === 'error' && s.danger,

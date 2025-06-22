@@ -10,7 +10,7 @@ export const DragAndDrop = () => {
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     const file = e.dataTransfer.files?.[0];
-    if (file && phase === 'idle') {
+    if (file && (phase === 'idle' || phase === 'fileSelected')) {
       selectFile(file);
     }
   };
@@ -29,7 +29,7 @@ export const DragAndDrop = () => {
     }
   };
 
-  const showUploadButton = phase === 'idle';
+  const showUploadButton = phase === 'idle' || phase === 'fileSelected';
   const buttonVariant = selectedFile ? 'primary' : 'disabled';
 
   return (
