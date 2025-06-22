@@ -1,36 +1,28 @@
-import { useRef } from 'react';
+import * as React from 'react';
+import { useUpload } from '../../store/uploadSlice';
+import { UploadButton } from '../UploadButton/UploadButton';
+import s from './DragAndDrop.module.css';
 
-export const DragAndDrop = ({ onFile }: { onFile: (rows: number, f: File) => void }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleClick = () => inputRef.current?.click();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) onFile(10000, file);
-  };
+export const DragAndDrop = () => {
+  const { phase, uploadFile } = useUpload();
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     const file = e.dataTransfer.files?.[0];
-    if (file) onFile(10000, file);
+    if (file && phase === 'idle') {
+      uploadFile(10000, file);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
   };
 
   return (
-    <div
-      onClick={handleClick}
-      onDrop={handleDrop}
-      onDragOver={(e) => e.preventDefault()}
-      style={{ border: '2px dashed #888', padding: 32, textAlign: 'center' }}
-    >
+    <div className={s.root} onDrop={handleDrop} onDragOver={handleDragOver}>
       Загрузите csv файл и получите <b>полную информацию</b> о нём за сверхнизкое время
-      <input
-        ref={inputRef}
-        type="file"
-        accept=".csv"
-        style={{ display: 'none' }}
-        onChange={handleChange}
-      />
+      <UploadButton />
+      {phase === 'idle' && <p className={s.dropText}>или перетащите сюда</p>}
     </div>
   );
 };
