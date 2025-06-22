@@ -11,13 +11,37 @@
     z-index: 1000;
 }
 
+.modalWrapper {
+    position: relative;
+}
+
 .modalContent {
     background: white;
     padding: 20px;
     border-radius: 8px;
     position: relative;
-    max-width: 500px;
+    max-width: 800px;
     width: 90%;
     max-height: 90vh;
     overflow-y: auto;
+}
+
+.closeContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(25%, -25%);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-black);
+    border-radius: 10px;
+}
+
+.closeButton {
+    display: flex;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 } 
