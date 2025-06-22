@@ -3,14 +3,12 @@ import { HighlightsTable } from '../../components/HighlightsTable/HighlightsTabl
 import { useUpload } from '../../store/uploadSlice';
 
 export const UploaderPage = () => {
-  const { phase, report } = useUpload();
+  const { report } = useUpload();
 
   return (
     <>
       <DragAndDrop />
-      {(phase === 'uploading' || phase === 'success') && report && (
-        <HighlightsTable data={report} />
-      )}
+      <HighlightsTable data={report} />
     </>
   );
 };

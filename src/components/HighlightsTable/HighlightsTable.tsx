@@ -3,7 +3,7 @@ import styles from './HighlightsTable.module.css';
 import type { ReportData } from '../../store/uploadSlice.ts';
 
 interface HighlightsTableProps {
-  data: ReportData;
+  data?: ReportData;
 }
 
 function dayOfYearToDate(day: number | undefined) {
@@ -17,6 +17,14 @@ function dayOfYearToDate(day: number | undefined) {
 }
 
 export const HighlightsTable = ({ data }: HighlightsTableProps) => {
+  if (!data) {
+    return (
+      <div className={styles.empty}>
+        <p className={styles.emptyText}>Здесь появятся хайлайты</p>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.grid}>
       <InfoRow label="общие расходы в галактических кредитах" value={data.total_spend_galactic} />

@@ -4,3 +4,16 @@
   gap: 16px;
   padding: 16px;
 }
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.emptyText {
+  color: var(--color-primary);
+  font-size: var(--font-size-xxl);
+  text-align: center;
+}
