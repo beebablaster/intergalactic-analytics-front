@@ -1,26 +1,14 @@
-import { useEffect } from 'react';
-import { getReports } from '../../api/api.ts';
 import { DragAndDrop } from '../../components/DragAndDrop/DragAndDrop.tsx';
 import { HighlightsTable } from '../../components/HighlightsTable/HighlightsTable.tsx';
+import { useUpload } from '../../store/uploadSlice';
 
 export const UploaderPage = () => {
-  useEffect(() => {
-    async function initData() {
-      const res = await getReports(0.01);
-      console.log(res.body);
-    }
-
-    initData();
-
-    return () => {
-      console.log('test');
-    };
-  }, []);
+  const { phase, uploadFile, report } = useUpload();
 
   return (
     <>
-      <DragAndDrop />
-      <HighlightsTable />
+      <DragAndDrop onFile={uploadFile} />
+      {phase === 'success' && report && <HighlightsTable data={report} />}
     </>
   );
 };
