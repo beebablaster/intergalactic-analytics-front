@@ -1,25 +1,22 @@
-import { useEffect } from 'react';
-import { getReport } from '../../api/api.ts';
+import { useReport } from '../../store/reportSlice';
 import { Button } from '../../components/Button/Button.tsx';
+import s from './GeneratorPage.module.css';
 
 export const GeneratorPage = () => {
-  useEffect(() => {
-    async function initData() {
-      const res = await getReport();
-      console.log(res.body);
-    }
+  const { phase, downloadReport } = useReport();
 
-    initData();
-
-    return () => {
-      console.log('test');
-    };
-  }, []);
+  const handleGenerateReport = () => {
+    downloadReport();
+  };
 
   return (
-    <>
+    <div className={s.container}>
       <span>Сгенерируйте готовый csv-файл нажатием одной кнопки</span>
-      <Button />
-    </>
+      <div className={s.button}>
+        <Button variant="primary" loading={phase === 'generating'} onClick={handleGenerateReport}>
+          Начать генерацию
+        </Button>
+      </div>
+    </div>
   );
 };

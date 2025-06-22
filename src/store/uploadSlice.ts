@@ -39,7 +39,13 @@ export const useUpload = create<UploadState>((set) => ({
 
   uploadFile: async (rows: number, file: File) => {
     try {
-      set({ phase: 'uploading', fileName: file.name, error: null, report: {}, selectedFile: undefined });
+      set({
+        phase: 'uploading',
+        fileName: file.name,
+        error: null,
+        report: {},
+        selectedFile: undefined,
+      });
 
       const stream = await aggregate(rows, file);
 
@@ -76,7 +82,7 @@ export const useUpload = create<UploadState>((set) => ({
     } catch (error) {
       set({
         phase: 'error',
-        error: error instanceof Error ? error.message : 'упс, не то...',
+        error: error.message,
         selectedFile: undefined,
       });
     }
