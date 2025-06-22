@@ -8,7 +8,9 @@ export const UploaderPage = () => {
   return (
     <>
       <DragAndDrop onFile={uploadFile} />
-      {phase === 'success' && report && <HighlightsTable data={report} />}
+      {(phase === 'uploading' || phase === 'success') && report && (
+        <HighlightsTable data={report} />
+      )}
     </>
   );
 };

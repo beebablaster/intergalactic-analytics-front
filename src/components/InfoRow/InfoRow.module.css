@@ -1,0 +1,23 @@
+.infoRow {
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 115px;
+}
+
+.value {
+  font-size: var(--font-size-xxl);
+  font-weight: 500;
+  color: var(--color-text);
+  word-break: break-all;
+}
+
+.label {
+  font-size: var(--font-size-l);
+  color: var(--color-text);
+}
