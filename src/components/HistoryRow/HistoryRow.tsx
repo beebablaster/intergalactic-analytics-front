@@ -28,9 +28,13 @@ export const HistoryRow = ({ entry, onDelete, onClick }: HistoryRowProps) => {
           <span>{entry.filename}</span>
         </div>
         <div className={s.date}>{entry.uploadDate}</div>
-        <div className={clsx(s.status, isSuccess ? s.success : s.error)}>
-          {isSuccess ? 'Обработан успешно' : 'Не удалось обработать'}
-          <img src={isSuccess ? successIcon : errorIcon} alt="status" />
+        <div className={clsx(s.status, !isSuccess && s.opaque)}>
+          Обработан успешно
+          <img src={successIcon} alt="success" />
+        </div>
+        <div className={clsx(s.status, isSuccess && s.opaque)}>
+          Не удалось обработать
+          <img src={errorIcon} alt="error" />
         </div>
       </div>
       <button onClick={handleDelete} className={s.deleteButton}>
