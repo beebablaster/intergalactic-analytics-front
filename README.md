@@ -6,6 +6,7 @@
 
 - Node.js
 - npm или yarn
+- [Запущенный бэкенд проект](https://github.com/etozhenerk/shri2025-back)
 
 ### Установка зависимостей
 
