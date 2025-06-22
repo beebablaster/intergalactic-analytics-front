@@ -26,7 +26,7 @@
   color: var(--color-black);
 }
 
-.statusWrapper.uploading {
+.statusWrapper.loading {
   background-color: var(--color-upload-progress);
 }
 .statusWrapper.success {
@@ -37,12 +37,12 @@
   color: var(--color-white);
 }
 
-.fileInfo {
+.statusInfo {
   display: flex;
   flex-direction: column;
 }
 
-.fileInfo span {
+.statusInfo span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -77,4 +77,4 @@
   animation: spin 1s infinite linear;
 }
 
-@keyframes spin {to{transform: rotate(1turn)}}
+@keyframes spin {to{transform: rotate(1turn)}} 
