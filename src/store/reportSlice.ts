@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getReport } from '../api/api';
+import { getReport } from '../services/api';
 
 type ReportPhase = 'idle' | 'generating' | 'success' | 'error';
 

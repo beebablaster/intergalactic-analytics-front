@@ -44,8 +44,9 @@ npm run format
 
 ```
 src/
-├── api/                    # API клиент для работы с бэком
-│   └── api.ts             
+├── services/               # Сервисы для работы с апишками localStorage и fetch
+│   ├── api.ts            
+│   ├── history.ts            
 ├── components/             # Переиспользуемые компоненты
 │   ├── Button/            
 │   ├── DragAndDrop/       
@@ -60,8 +61,6 @@ src/
 │   └── reportSlice.ts
 ├── types/                  # Общие типы
 │   └── index.ts
-├── utils/                  # Утилиты
-│   └── historyStorage.ts  
 └── App.tsx                # Входная точка
 ```
 

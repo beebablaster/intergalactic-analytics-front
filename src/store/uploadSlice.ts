@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { aggregate } from '../api/api';
-import { addHistoryEntry } from '../utils/historyStorage';
+import { aggregate } from '../services/api';
 import type { ReportData } from '../types';
+import { addHistoryEntry } from '../services/history.ts';
 
 type Phase = 'idle' | 'fileSelected' | 'uploading' | 'success' | 'error';
 

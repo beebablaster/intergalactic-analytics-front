@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HistoryTable } from '../../components/HistoryTable/HistoryTable';
-import { clearHistory, getHistory, removeHistoryEntry } from '../../utils/historyStorage';
+import { clearHistory, getHistory, removeHistoryEntry } from '../../services/history';
 import type { HistoryEntry } from '../../types';
 import { Modal } from '../../components/Modal/Modal';
 import { HighlightsTable } from '../../components/HighlightsTable/HighlightsTable';
