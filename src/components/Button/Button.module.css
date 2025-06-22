@@ -17,5 +17,6 @@
 .ghost    { background: transparent;        color: var(--color-black); }
 .white    { background: var(--color-white); color: var(--color-black); border: 1px solid var(--color-black); }
 .clear    { background: var(--color-black); color: var(--color-white); }
+.disabled { background: var(--color-disabled); color: var(--color-black); cursor: not-allowed; }
 
 .hidden { visibility: hidden; }

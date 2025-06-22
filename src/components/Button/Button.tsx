@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import s from './Button.module.css';
 
-export type Variant = 'primary' | 'success' | 'danger' | 'ghost' | 'white' | 'clear';
+export type Variant = 'primary' | 'success' | 'danger' | 'ghost' | 'white' | 'clear' | 'disabled';
 
 type Props = {
   variant?: Variant;
