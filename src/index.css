@@ -3,11 +3,9 @@
 :root {
   /* Colors */
   --color-white: #FFFFFF;
-  --color-red: #f8604a;
   --color-black: #201B10;
   --color-bg: #FCE2FF;
   --color-primary: #CB81FF;
-  --color-text: #201B10;
   --color-active: #2AE881;
 
   --color-upload-default: #FFFFFF;

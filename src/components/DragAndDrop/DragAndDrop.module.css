@@ -7,10 +7,10 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  border: 1px solid var(--color-text);
+  border: 1px solid var(--color-black);
   border-radius: 12px;
 }
 
 .dropText {
-  color: var(--color-text);
+  color: var(--color-black);
 }
