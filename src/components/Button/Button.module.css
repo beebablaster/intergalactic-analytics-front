@@ -1,0 +1,21 @@
+.root {
+  min-width: 190px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary  { background: var(--color-active); color: var(--color-black); }
+.success  { background: var(--color-active); color: var(--color-black); }
+.danger   { background: var(--color-upload-error);   color: var(--color-white); }
+.ghost    { background: transparent;        color: var(--color-black); }
+.white    { background: var(--color-white); color: var(--color-black); border: 1px solid var(--color-black); }
+.clear    { background: var(--color-black); color: var(--color-white); }
+
+.hidden { visibility: hidden; }
