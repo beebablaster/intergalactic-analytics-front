@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { getReports } from '../../api/api.ts';
-import { DragAndDrop } from '../../components/DragAndDrop/DragAndDrop.tsx';
-import { HighlightsTable } from '../../components/HighlightsTable/HighlightsTable.tsx';
+import { Button } from '../../components/Button/Button.tsx';
+import { HistoryTable } from '../../components/HistoryTable/HistoryTable.tsx';
 
-export const UploaderPage = () => {
+export const HistoryPage = () => {
   useEffect(() => {
     async function initData() {
       const res = await getReports(0.01);
@@ -19,8 +19,9 @@ export const UploaderPage = () => {
 
   return (
     <>
-      <DragAndDrop />
-      <HighlightsTable />
+      <HistoryTable />
+      <Button />
+      <Button />
     </>
   );
 };

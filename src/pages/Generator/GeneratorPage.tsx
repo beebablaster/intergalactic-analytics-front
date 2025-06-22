@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { getReports } from '../../api/api.ts';
-import { DragAndDrop } from '../../components/DragAndDrop/DragAndDrop.tsx';
-import { HighlightsTable } from '../../components/HighlightsTable/HighlightsTable.tsx';
+import { Button } from '../../components/Button/Button.tsx';
 
-export const UploaderPage = () => {
+export const GeneratorPage = () => {
   useEffect(() => {
     async function initData() {
       const res = await getReports(0.01);
@@ -19,8 +18,8 @@ export const UploaderPage = () => {
 
   return (
     <>
-      <DragAndDrop />
-      <HighlightsTable />
+      <span>Сгенерируйте готовый csv-файл нажатием одной кнопки</span>
+      <Button />
     </>
   );
 };
