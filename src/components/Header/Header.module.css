@@ -17,5 +17,5 @@
     padding: var(--spacing-xs);
     font-size: var(--font-size-4l);
     font-weight: 500;
-    background-color: var(--color-title);
+    background-color: var(--color-primary);
 }

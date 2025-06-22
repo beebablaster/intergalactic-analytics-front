@@ -1,15 +1,19 @@
-@import './styles/colors.css';
 @import url('https://yastatic.net/s3/home/fonts/ys/4/text-black.woff2');
 
 :root {
   /* Colors */
   --color-white: #FFFFFF;
   --color-red: #f8604a;
-  --color-black: #000000;
+  --color-black: #201B10;
   --color-bg: #FCE2FF;
-  --color-title: #CB81FF;
+  --color-primary: #CB81FF;
   --color-text: #201B10;
-  --color-success: #2AE881;
+  --color-active: #2AE881;
+
+  --color-upload-default: #FFFFFF;
+  --color-upload-progress: #CB81FF;
+  --color-upload-success: #D4FAE6;
+  --color-upload-error: #FF5F00;
 
   /* Typography */
   --font-size-m: 1rem;
