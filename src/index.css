@@ -1,9 +1,69 @@
+@import url('https://yastatic.net/s3/home/fonts/ys/4/text-black.woff2');
+
+:root {
+  /* Colors */
+  --color-white: #FFFFFF;
+  --color-red: #f8604a;
+  --color-black: #000000;
+  --color-bg: #FCE2FF;
+  --color-title: #CB81FF;
+
+  /* Typography */
+  --font-size-m: 1rem;
+  --font-size-s: 0.875rem;
+  --font-size-l: 1.25rem;
+  --font-size-2l: 1.5rem;
+  --font-size-3l: 1.75rem;
+  --font-size-4l: 1.875rem;
+  --font-size-xl: 2rem;
+  --line-height-m: 1.6;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-s: 0.5rem;
+  --spacing-2s: 0.625rem;
+  --spacing-m: 1rem;
+  --spacing-l: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 2.5rem;
+
+  /* Border radius */
+  --radius-s: 8px;
+  --radius-2s: 10px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+
+  /* Shadows */
+  --shadow-s: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "YS Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: var(--line-height-m);
+  background-color: var(--color-bg);
+  padding: var(--spacing-xxl);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: var(--font-size-m);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
 }
