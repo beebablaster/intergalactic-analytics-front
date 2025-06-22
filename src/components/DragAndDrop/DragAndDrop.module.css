@@ -1,5 +1,15 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.text {
+  text-align: center;
+  color: var(--color-black);
+}
+
 .root {
-  width: 100%;
   min-height: 292px;
   padding: 24px;
   display: flex;
@@ -13,4 +23,14 @@
 
 .dropText {
   color: var(--color-black);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.uploadButton {
+  width: 230px;
 }
