@@ -18,8 +18,10 @@ export interface ReportData {
 interface UploadState {
   phase: Phase;
   fileName?: string;
+  selectedFile?: File;
   error?: string | null;
   report?: ReportData;
+  selectFile: (file: File) => void;
   uploadFile: (rows: number, f: File) => Promise<void>;
   reset: () => void;
 }
@@ -27,12 +29,17 @@ interface UploadState {
 export const useUpload = create<UploadState>((set) => ({
   phase: 'idle',
   fileName: undefined,
+  selectedFile: undefined,
   error: null,
   report: undefined,
 
+  selectFile: (file: File) => {
+    set({ selectedFile: file });
+  },
+
   uploadFile: async (rows: number, file: File) => {
     try {
-      set({ phase: 'uploading', fileName: file.name, error: null, report: {} });
+      set({ phase: 'uploading', fileName: file.name, error: null, report: {}, selectedFile: undefined });
 
       const stream = await aggregate(rows, file);
 
@@ -70,6 +77,7 @@ export const useUpload = create<UploadState>((set) => ({
       set({
         phase: 'error',
         error: error instanceof Error ? error.message : 'упс, не то...',
+        selectedFile: undefined,
       });
     }
   },
@@ -78,6 +86,7 @@ export const useUpload = create<UploadState>((set) => ({
     set({
       phase: 'idle',
       fileName: undefined,
+      selectedFile: undefined,
       error: null,
       report: undefined,
     });

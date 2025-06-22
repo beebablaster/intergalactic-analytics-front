@@ -5,14 +5,20 @@ import s from './UploadButton.module.css';
 import cancelIcon from '../../assets/cancel.svg';
 import clsx from 'clsx';
 
-export const UploadButton = ({ rows = 10000 }: { rows?: number }) => {
+interface UploadButtonProps {
+  onFileSelect?: (file: File) => void;
+}
+
+export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { phase, fileName, uploadFile, reset } = useUpload();
+  const { phase, fileName, reset } = useUpload();
 
   const openDialog = () => inputRef.current?.click();
   const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) uploadFile(rows, file);
+    if (file && phase === 'idle' && onFileSelect) {
+      onFileSelect(file);
+    }
   };
 
   const statusText =
