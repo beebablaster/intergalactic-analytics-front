@@ -1,3 +1,4 @@
+@import './styles/colors.css';
 @import url('https://yastatic.net/s3/home/fonts/ys/4/text-black.woff2');
 
 :root {
@@ -8,6 +9,7 @@
   --color-bg: #FCE2FF;
   --color-title: #CB81FF;
   --color-text: #201B10;
+  --color-success: #2AE881;
 
   /* Typography */
   --font-size-m: 1rem;
