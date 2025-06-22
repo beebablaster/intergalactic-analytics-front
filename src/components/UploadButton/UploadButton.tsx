@@ -32,7 +32,7 @@ export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
 
   if (phase === 'idle') {
     return (
-      <div>
+      <div className={s.statusContainer}>
         <input
           ref={inputRef}
           type="file"
@@ -76,7 +76,6 @@ export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
         )}
       </div>
 
-      {phase === 'uploading' && <span>{fileName}</span>}
       <span className={s.statusText}>{statusText}</span>
     </div>
   );
