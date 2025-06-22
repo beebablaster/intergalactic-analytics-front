@@ -19,8 +19,6 @@ npm install
 npm run dev
 ```
 
-Приложение будет доступно по адресу: `http://localhost:5173`
-
 ### Сборка проекта
 
 ```bash
