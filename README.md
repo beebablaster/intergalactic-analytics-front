@@ -1,54 +1,124 @@
-# React + TypeScript + Vite
+# Разработка интерфейса для Сервиса межгалактической аналитики
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Инструкции по запуску
 
-Currently, two official plugins are available:
+### Предварительные требования
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (версия 18 или выше)
+- npm или yarn
 
-## Expanding the ESLint configuration
+### Установка зависимостей
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Запуск в режиме разработки
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+```bash
+npm run dev
 ```
+
+Приложение будет доступно по адресу: `http://localhost:5173`
+
+### Сборка проекта
+
+```bash
+npm run build
+```
+
+### Просмотр сборки
+
+```bash
+npm run preview
+```
+
+### Линтер и форматирование
+
+```bash
+npm run lint
+npm run format
+```
+
+## 🍰 Описание архитектуры
+
+```
+src/
+├── api/                    # API клиент
+│   └── api.ts             # Функции для работы с бэкендом
+├── components/             # Переиспользуемые компоненты
+│   ├── Button/            # Кнопки
+│   ├── DragAndDrop/       # Drag & Drop функциональность
+│   ├── Header/            # Заголовок приложения
+│   ├── Modal/             # Модальные окна
+│   ├── StatusButton/      # Кнопки статуса
+│   └── ...                # Другие UI компоненты
+├── pages/                  # Страницы приложения
+│   ├── Uploader/          # Страница загрузки файлов
+│   ├── Generator/         # Страница генерации отчетов
+│   └── History/           # Страница истории
+├── store/                  # Управление состоянием (Zustand)
+│   ├── uploadSlice.ts     # Состояние загрузки файлов
+│   └── reportSlice.ts     # Состояние отчетов
+├── types/                  # TypeScript типы
+│   └── index.ts
+├── utils/                  # Утилиты
+│   └── historyStorage.ts  # Локальное хранение истории
+└── App.tsx                # Главный компонент
+```
+
+### Архитектурные принципы
+
+#### 1. Компонентная архитектура
+
+- Разделение на переиспользуемые компоненты
+- Использование CSS Modules для изоляции стилей
+- Типизация всех компонентов с помощью TypeScript
+
+#### 2. Управление состоянием
+
+- **Zustand** для глобального состояния
+- Разделение состояния по доменам (upload, report)
+- Локальное хранение истории в localStorage
+
+#### 3. Маршрутизация
+
+- React Router для навигации между страницами
+- Три основных маршрута:
+  - `/` - загрузка файлов
+  - `/generate` - генерация отчетов
+  - `/history` - история обработки
+
+#### 4. API взаимодействие
+
+- REST API клиент в `src/api/api.ts`
+- Поддержка потоковой обработки данных (Server-Sent Events)
+- Обработка ошибок и состояний загрузки
+
+#### 5. Обработка файлов
+
+- Drag & Drop интерфейс для загрузки
+- Поддержка различных форматов файлов
+- Потоковая обработка больших файлов
+
+### Основные функции
+
+1. **Загрузка файлов** - drag & drop интерфейс с валидацией
+2. **Генерация отчетов** - создание аналитических отчетов
+3. **История обработки** - просмотр результатов предыдущих операций
+4. **Реальное время** - обновление данных в реальном времени
+5. **Локальное хранение** - сохранение истории в браузере
+
+### Конфигурация
+
+Приложение настроено для работы с бэкендом на `http://localhost:3000`. Для изменения адреса API отредактируйте файл `src/api/api.ts`.
+
+## 📝 Дополнительная информация
+
+### ESLint конфигурация
+
+Проект использует современную конфигурацию ESLint с поддержкой TypeScript и React. Для расширения конфигурации см. файл `eslint.config.js`.
+
+### Форматирование кода
+
+Используется Prettier для автоматического форматирования кода. Настройки находятся в корне проекта.

@@ -17,7 +17,7 @@ export const MenuItem = ({ icon, text, path }: MenuItemProps) => {
   };
 
   return (
-    <div 
+    <div
       className={`${styles.menuItem} ${isSelected ? styles.selected : ''}`}
       onClick={handleClick}
     >

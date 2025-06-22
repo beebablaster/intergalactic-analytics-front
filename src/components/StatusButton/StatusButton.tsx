@@ -24,7 +24,7 @@ export const StatusButton = ({
   statusInfo,
   onAction,
   onReset,
-  variant = 'primary'
+  variant = 'primary',
 }: StatusButtonProps) => {
   const statusText =
     phase === 'loading'
@@ -76,4 +76,4 @@ export const StatusButton = ({
       <span className={s.statusText}>{statusText}</span>
     </div>
   );
-}; 
+};

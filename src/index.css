@@ -2,19 +2,19 @@
 
 :root {
   /* Colors */
-  --color-white: #FFFFFF;
-  --color-black: #201B10;
-  --color-bg: #FCE2FF;
-  --color-primary: #CB81FF;
-  --color-active: #2AE881;
-  --color-disabled: #C0C0C0;
+  --color-white: #ffffff;
+  --color-black: #201b10;
+  --color-bg: #fce2ff;
+  --color-primary: #cb81ff;
+  --color-active: #2ae881;
+  --color-disabled: #c0c0c0;
 
-  --color-upload-default: #FFFFFF;
-  --color-upload-progress: #CB81FF;
-  --color-upload-success: #D4FAE6;
-  --color-upload-error: #FF5F00;
+  --color-upload-default: #ffffff;
+  --color-upload-progress: #cb81ff;
+  --color-upload-success: #d4fae6;
+  --color-upload-error: #ff5f00;
 
-  --color-modal-row: #EACDFF;
+  --color-modal-row: #eacdff;
 
   /* Typography */
   --font-size-m: 1rem;
@@ -53,7 +53,7 @@
 }
 
 body {
-  font-family: "YS Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: 'YS Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: var(--line-height-m);
   background-color: var(--color-bg);
   padding: var(--spacing-xxl);

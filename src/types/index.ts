@@ -16,4 +16,4 @@ export interface HistoryEntry {
   uploadDate: string;
   status: 'success' | 'error';
   report?: ReportData;
-} 
+}
