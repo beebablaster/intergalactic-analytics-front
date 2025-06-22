@@ -1,8 +1,6 @@
 import styles from './Header.module.css';
 import summerSchoolsIcon from './../../assets/summer_schools.svg';
-import uploaderIcon from './../../assets/uploader.svg';
-import generatorIcon from './../../assets/generator.svg';
-import historyIcon from './../../assets/history.svg';
+import { Menu } from '../Menu/Menu';
 
 export const Header = function Header() {
   return (
@@ -13,20 +11,7 @@ export const Header = function Header() {
           <span>МЕЖГАЛАКТИЧЕСКАЯ АНАЛИТИКА</span>
         </div>
       </div>
-      <div className={styles.navButtons}>
-        <div className={styles.navButton}>
-          <img src={uploaderIcon} />
-          <span>CSV Аналитик</span>
-        </div>
-        <div className={styles.navButton}>
-          <img src={generatorIcon} />
-          <span>CSV Генератор</span>
-        </div>
-        <div className={styles.navButton}>
-          <img src={historyIcon} />
-          <span>История</span>
-        </div>
-      </div>
+      <Menu />
     </header>
   );
 };
