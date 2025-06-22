@@ -7,11 +7,28 @@ import clsx from 'clsx';
 
 interface UploadButtonProps {
   onFileSelect?: (file: File) => void;
+  mode?: 'upload' | 'generator';
+  onGenerate?: () => void;
+  generatorPhase?: 'idle' | 'generating' | 'success' | 'error';
+  generatorError?: string | null;
+  generatorReset?: () => void;
 }
 
-export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
+export const UploadButton = ({
+  onFileSelect,
+  mode = 'upload',
+  onGenerate,
+  generatorPhase,
+  generatorError,
+  generatorReset,
+}: UploadButtonProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { phase, fileName, reset } = useUpload();
+  const uploadState = useUpload();
+
+  const isGeneratorMode = mode === 'generator';
+  const phase = isGeneratorMode ? generatorPhase : uploadState.phase;
+  const fileName = uploadState.fileName;
+  const reset = isGeneratorMode ? generatorReset : uploadState.reset;
 
   const openDialog = () => inputRef.current?.click();
   const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,28 +38,53 @@ export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
     }
   };
 
-  const statusText =
-    phase === 'fileSelected'
+  const handleGenerate = () => {
+    if (onGenerate) {
+      onGenerate();
+    }
+  };
+
+  const getStatusText = () => {
+    if (isGeneratorMode) {
+      return phase === 'generating'
+        ? 'идёт процесс генерации'
+        : phase === 'success'
+          ? 'файл сгенерирован!'
+          : phase === 'error'
+            ? generatorError || 'упс, не то...'
+            : '';
+    }
+
+    return phase === 'fileSelected'
       ? 'файл загружен!'
       : phase === 'uploading'
         ? 'идёт парсинг файла'
         : phase === 'success'
           ? 'готово!'
           : 'упс, не то...';
+  };
 
   if (phase === 'idle') {
     return (
       <div className={s.statusContainer}>
-        <input
-          ref={inputRef}
-          type="file"
-          accept=".csv"
-          style={{ display: 'none' }}
-          onChange={onPick}
-        />
-        <Button variant="white" onClick={openDialog}>
-          Загрузить файл
-        </Button>
+        {isGeneratorMode ? (
+          <Button variant="primary" onClick={handleGenerate}>
+            Начать генерацию
+          </Button>
+        ) : (
+          <>
+            <input
+              ref={inputRef}
+              type="file"
+              accept=".csv"
+              style={{ display: 'none' }}
+              onChange={onPick}
+            />
+            <Button variant="white" onClick={openDialog}>
+              Загрузить файл
+            </Button>
+          </>
+        )}
       </div>
     );
   }
@@ -53,30 +95,30 @@ export const UploadButton = ({ onFileSelect }: UploadButtonProps) => {
         <div
           className={clsx(
             s.statusWrapper,
-            phase === 'fileSelected' && s.uploading,
+            (phase === 'fileSelected' || phase === 'generating') && s.uploading,
             phase === 'uploading' && s.uploading,
             phase === 'success' && s.success,
             phase === 'error' && s.danger,
           )}
         >
-          {phase !== 'uploading' && (
+          {phase !== 'uploading' && phase !== 'generating' && (
             <div className={s.fileInfo}>
-              <span>{fileName}</span>
+              <span>{isGeneratorMode ? (phase === 'success' ? 'Done' : 'Ошибка') : fileName}</span>
             </div>
           )}
-          {phase === 'uploading' && <div className={s.spinner} />}
+          {(phase === 'uploading' || phase === 'generating') && <div className={s.spinner} />}
         </div>
 
-        {phase !== 'uploading' && (
+        {phase !== 'uploading' && phase !== 'generating' && (
           <div className={s.resetContainer}>
-            <button onClick={() => reset()} className={s.resetButton}>
+            <button onClick={() => reset?.()} className={s.resetButton}>
               <img src={cancelIcon} alt="cancel" />
             </button>
           </div>
         )}
       </div>
 
-      <span className={s.statusText}>{statusText}</span>
+      <span className={s.statusText}>{getStatusText()}</span>
     </div>
   );
 };
