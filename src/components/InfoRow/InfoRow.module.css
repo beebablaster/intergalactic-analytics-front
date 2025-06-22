@@ -21,3 +21,7 @@
   font-size: var(--font-size-l);
   color: var(--color-black);
 }
+
+.modalRow {
+    background-color: var(--color-modal-row);
+}

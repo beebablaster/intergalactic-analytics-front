@@ -1,19 +1,9 @@
 import { create } from 'zustand';
 import { aggregate } from '../api/api';
+import { addHistoryEntry } from '../utils/historyStorage';
+import type { ReportData } from '../types';
 
 type Phase = 'idle' | 'fileSelected' | 'uploading' | 'success' | 'error';
-
-export interface ReportData {
-  total_spend_galactic?: number;
-  rows_affected?: number;
-  average_spend_galactic?: number;
-  less_spent_at?: number;
-  big_spent_at?: number;
-  less_spent_value?: number;
-  big_spent_value?: number;
-  big_spent_civ?: string;
-  less_spent_civ?: string;
-}
 
 interface UploadState {
   phase: Phase;
@@ -26,7 +16,7 @@ interface UploadState {
   reset: () => void;
 }
 
-export const useUpload = create<UploadState>((set) => ({
+export const useUpload = create<UploadState>((set, get) => ({
   phase: 'idle',
   fileName: undefined,
   selectedFile: undefined,
@@ -58,6 +48,14 @@ export const useUpload = create<UploadState>((set) => ({
           const { done, value } = await reader.read();
           if (done) {
             set({ phase: 'success' });
+            const { fileName, report } = get();
+            if (fileName) {
+              addHistoryEntry({
+                filename: fileName,
+                status: 'success',
+                report,
+              });
+            }
             return;
           }
 
@@ -85,6 +83,14 @@ export const useUpload = create<UploadState>((set) => ({
         error: error.message,
         selectedFile: undefined,
       });
+      const { fileName, report } = get();
+      if (fileName) {
+        addHistoryEntry({
+          filename: fileName,
+          status: 'error',
+          report,
+        });
+      }
     }
   },
 
