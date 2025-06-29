@@ -9,5 +9,12 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'html'],
     },
+    exclude: [
+      'tests/e2e.spec.ts',
+      'node_modules/**',
+      'dist/**',
+      'build/**',
+    ],
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
 });
